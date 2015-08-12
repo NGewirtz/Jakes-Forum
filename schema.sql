@@ -23,7 +23,7 @@ CREATE TABLE threads (
 	FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
-CREATE TABLE replys (
+CREATE TABLE replies (
 	id INTEGER PRIMARY KEY autoincrement,
 	thread_id INTEGER,
 	user_id INTEGER,

@@ -23,18 +23,15 @@
 			</div>			
 		</div></br>
 
-		<% categories.forEach(function(categorie){ %>
-			<div class = "row" id = "home-body" style= "border-style: solid; border-width: 1px;">
-				<div class = "six columns"style= "border-style: solid; border-width: 1px;">
-					<h2> <%= category.name %> </h2>
-				</div>
+		<% categories.forEach(function(category){ %>
+		<div class = "row" id = "home-body" style= "border-style: solid; border-width: 1px;">
+			<div class = "six columns"style= "border-style: solid; border-width: 1px;">
+				<a href= "http://localhost:3000/forums/<%= category.id %>"><h2> <%= category.name %> </h2></a>
+			</div>
 			<div class = "six columns">
 				<h2>This is a thread</h2>
 			</div>			
 		</div>
-
-
-
 		<%	}) %>
 
 

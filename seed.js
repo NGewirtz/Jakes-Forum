@@ -6,3 +6,10 @@ db.run("INSERT INTO categories (name, description) VALUES ('first category', 'th
 		throw err;
 	}
 });
+
+
+db.run("INSERT INTO threads (title, content, cat_id) VALUES ('first thread', 'this is my first thread', 1), ('second thread', 'this is my second thread', 2), ('third thread', 'this is my third thread', 3)", function (err) {
+	if(err){
+		throw err;
+	}
+});

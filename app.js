@@ -26,6 +26,20 @@ app.get("/forums", function (req, res){
 	});
 });
 
+app.get("/forums/:category", function (req, res){
+	var id = req.params.category
+	db.get("SELECT * FROM categories WHERE id=?", id, function (err, category){
+		if(err){
+			throw err;
+		}else {
+			var category = category
+			db.all("SELECT * FROM categories INNER JOIN threads ON threads.cat_id = categories.id", function (err, threads) {
+				res.render("categories.ejs", {category: category, threads: threads})
+			})
+		}
+	});
+});
+
 
 
 app.listen(3000, function(){
