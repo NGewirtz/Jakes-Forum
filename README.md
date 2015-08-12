@@ -28,3 +28,5 @@ User Stories :
 ![pseudo](pseudocode2.png)
 
 ![routes](routes.png)
+
+![erd](ERD.png)
