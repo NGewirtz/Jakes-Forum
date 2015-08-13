@@ -8,9 +8,9 @@
 <body>
 	<div class = "container"style = "background-color: grey">
 
-		<div class = "row">
+		<div class = "row" style = "text-align: center">
 			<div class = "twelve columns" style = "background-color: black">
-				<h1> Welcome to 2+3 forums! </h1>
+				<a href="http://localhost:3000"><h1> Welcome to 2+3 forums! </h1></a>
 			</div>
 		</div>
 
@@ -25,10 +25,10 @@
 
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: blue; text-align: center;">
-				<h2> <%= category.name %> </h2>
+				<h2> <%= category.name %>
 				<form action = "/forums/threads/new/<%= category.id%>">
 					<button style = "position: relative; float: right">New Thread</button>
-				</form>
+				</form></h2>
 			</div>			
 		</div>
 
@@ -39,7 +39,14 @@
 		<% if (category.id == thread.cat_id) { %>
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: grey;">
-				<a href = "http://localhost:3000/forums/threads/<%= thread.id %>"><h3> <%= thread.title %> </h3></a>
+				<a href = "http://localhost:3000/forums/threads/<%= thread.id %>" class = "nine columns"><h3> <%= thread.title %> </h3></a>
+				
+				<% var counter = 1 %>
+				<% replies.forEach(function(text){ %>
+				<% if (thread.id == text.thread_id) { counter ++ }	 %>
+				<% }) %>
+				<h3 class = "three columns"> <%= counter %> <h3>
+
 			</div>			
 		</div>
 		<% } %>

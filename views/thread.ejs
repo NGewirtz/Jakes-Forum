@@ -8,9 +8,9 @@
 <body>
 	<div class = "container"style = "background-color: grey">
 
-		<div class = "row">
+		<div class = "row" style = "text-align: center">
 			<div class = "twelve columns" style = "background-color: black">
-				<h1> Welcome to 2+3 forums! </h1>
+				<a href="http://localhost:3000"><h1> Welcome to 2+3 forums! </h1></a>
 			</div>
 		</div>
 
@@ -25,28 +25,32 @@
 
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: blue; text-align: center;">
-				<h2> <%= thread.title %> </h2>
-				<button style = "position: relative; float: right">VOTE!</button>
+				<h2> <%= thread.title %> 
+				<form action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
+					<button style = "position: relative; float: right">VOTE!</button> </form></h2>
 			</div>			
 		</div>
 
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: red; text-align: center;">
-				<h2> <%= thread.content %> </h2>
+				<h2 class = "nine columns"> <%= thread.content %> </h2>
+				<h2 class = "three columns"> 1 </h2>
 			</div>			
 		</div>
 
-		
+		<% var counter = 2 %>
 		<% reply.forEach(function(text){ %>
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: red; text-align: center;">
-				<h2>  <%= text.content %> </h2>
-			</div>			
+				<h2 class = "nine columns"> <%= text.content %> </h2>
+				<h2 class = "three columns">  <%= counter %> </h2>
+				<% counter ++  %>
+			</div>					
 		</div>
 		<%	}) %>
 
-		<form action="/forums/threads/<%= thread.id %>" method="POST">
-  		<div class="row">
+		</br><form action="/forums/threads/<%= thread.id %>" method="POST">
+  		<div class="row" style = "padding-left: 30px; padding-right: 30px;">
     		<label for="reply">New Reply</label>
   			<textarea class="u-full-width" placeholder="Type reply here" id="reply" name ="reply"></textarea>
   			<button>Submit</button>

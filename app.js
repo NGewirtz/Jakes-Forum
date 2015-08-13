@@ -17,11 +17,22 @@ app.get("/", function (req, res){
 });
 
 app.get("/forums", function (req, res){
+	var threadArray = [];
 	db.all("SELECT * FROM categories", function (err, categories){
 		if (err) {
 			throw err;
 		}else {
-			res.render("index.ejs", {categories: categories});
+			var categories = categories
+			console.log(categories)
+			categories.forEach(function(category){
+				db.get("SELECT * FROM threads WHERE cat_id=? ORDER BY threads.votes DESC", category.id, function (err, thread){
+					//console.log(thread)	
+					threadArray.push(thread)
+					if (threadArray.length === categories.length) {
+						res.render("index.ejs", {categories: categories, thread:threadArray});
+					}
+				})
+			})
 		}
 	});
 });
@@ -60,7 +71,14 @@ app.get("/forums/:category", function (req, res){
 		}else {
 			var category = category
 			db.all("SELECT * FROM categories INNER JOIN threads ON threads.cat_id = categories.id", function (err, threads) {
-				res.render("categories.ejs", {category: category, threads: threads})
+				//console.log(threads)
+				db.all("SELECT * FROM replies", function (err, replies) {
+					var replies = replies
+					//console.log(replies)
+					//console.log(threads)
+					//if (replies.thread_id === thread.id)
+					res.render("categories.ejs", {category: category, threads: threads, replies: replies})
+				})
 			})
 		}
 	});
@@ -93,6 +111,23 @@ app.post("/forums/threads/:id", function (req, res){
 			throw err;
 		}
 		res.redirect("/forums/threads/"+id);
+	});
+});
+
+app.put("/forums/threads/:id", function (req, res){
+	var id = req.params.id
+	db.get("SELECT * FROM threads WHERE id=?", id, function (err, thread){
+		if(err){
+			throw err;
+		}else {
+			console.log(thread.votes)
+			var votes = thread.votes+1;
+			//console.log(votes)
+			db.run("UPDATE threads SET votes=? WHERE id=?", votes, id, function (err) {
+				//console.log(votes);
+				res.redirect("/forums/threads/"+id)
+			});
+		}
 	});
 });
 
