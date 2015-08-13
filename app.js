@@ -26,6 +26,32 @@ app.get("/forums", function (req, res){
 	});
 });
 
+app.get("/forums/threads/new/:id", function (req, res){
+	var id = req.params.id;
+	db.get("SELECT * FROM categories WHERE id=?", id, function (err, category){
+		if(err){
+			throw err;
+		}else {
+		res.render("newcategorie.ejs", {category: category});
+		}
+	});
+});
+
+app.post("/forums/threads/new/:id", function (req, res){
+	var id = req.params.id;
+	var title = req.body.title;
+	var content = req.body.content;
+	var votes = 0;
+
+	db.run("INSERT INTO threads (cat_id, title, content, votes) VALUES (?,?,?,?)", id, title, content, votes, function (err){
+		if(err){
+			throw err;
+		}else {
+			res.redirect("/forums/"+id)
+		}
+	});
+});
+
 app.get("/forums/:category", function (req, res){
 	var id = req.params.category
 	db.get("SELECT * FROM categories WHERE id=?", id, function (err, category){
@@ -37,6 +63,36 @@ app.get("/forums/:category", function (req, res){
 				res.render("categories.ejs", {category: category, threads: threads})
 			})
 		}
+	});
+});
+
+app.get("/forums/threads/:id", function (req, res){
+	var id = req.params.id;
+	db.get("SELECT * FROM threads WHERE id=?", id, function (err, thread){
+		if(err){
+			throw err;
+		}else {
+			db.all("SELECT * FROM replies WHERE thread_id=?", id, function (err, reply){
+				if (err){
+					throw err;
+				}else {
+					//console.log(reply)
+					res.render("thread.ejs", {thread: thread, reply: reply});
+				}
+			});
+		}
+	});
+});
+
+app.post("/forums/threads/:id", function (req, res){
+	var id = req.params.id;
+	var reply = req.body.reply;
+	console.log(reply)
+	db.run("INSERT INTO replies (thread_id, content) VALUES (?,?)", id, reply, function (err) {
+		if(err){
+			throw err;
+		}
+		res.redirect("/forums/threads/"+id);
 	});
 });
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Forum</title>
+	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+	<div class = "container"style = "background-color: grey">
+
+		<div class = "row">
+			<div class = "twelve columns" style = "background-color: black">
+				<h1> Welcome to 2+3 forums! </h1>
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "six columns">
+				<button>This is a button</button>
+			</div>
+			<div class = "six columns">
+				<button style = "position: relative; float: right">This is a button</button>
+			</div>			
+		</div></br>
+
+		<div class = "row">
+			<div class = "twelve columns" style = "background-color: blue; text-align: center;">
+				<h2> <%= thread.title %> </h2>
+				<button style = "position: relative; float: right">VOTE!</button>
+			</div>			
+		</div>
+
+		<div class = "row">
+			<div class = "twelve columns" style = "background-color: red; text-align: center;">
+				<h2> <%= thread.content %> </h2>
+			</div>			
+		</div>
+
+		
+		<% reply.forEach(function(text){ %>
+		<div class = "row">
+			<div class = "twelve columns" style = "background-color: red; text-align: center;">
+				<h2>  <%= text.content %> </h2>
+			</div>			
+		</div>
+		<%	}) %>
+
+		<form action="/forums/threads/<%= thread.id %>" method="POST">
+  		<div class="row">
+    		<label for="reply">New Reply</label>
+  			<textarea class="u-full-width" placeholder="Type reply here" id="reply" name ="reply"></textarea>
+  			<button>Submit</button>
+  		</div>
+		</form>
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+</body>
+</html>

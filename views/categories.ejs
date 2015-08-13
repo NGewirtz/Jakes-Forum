@@ -26,7 +26,9 @@
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: blue; text-align: center;">
 				<h2> <%= category.name %> </h2>
-				<button style = "position: relative; float: right">New Thread</button>
+				<form action = "/forums/threads/new/<%= category.id%>">
+					<button style = "position: relative; float: right">New Thread</button>
+				</form>
 			</div>			
 		</div>
 
@@ -37,7 +39,7 @@
 		<% if (category.id == thread.cat_id) { %>
 		<div class = "row">
 			<div class = "twelve columns" style = "background-color: grey;">
-				<h3> <%= thread.title %> </h3>
+				<a href = "http://localhost:3000/forums/threads/<%= thread.id %>"><h3> <%= thread.title %> </h3></a>
 			</div>			
 		</div>
 		<% } %>
