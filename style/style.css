@@ -33,11 +33,11 @@ a {
 
 .topics {
 	padding-left: 10px;
-	color: rgb(20, 20, 102);
+	color: rgb(65, 78, 78);
 }
 
 .threads {
-	color: rgb(20, 20, 102);
+	color: rgb(65, 78, 78);
 }
 
 .container {
@@ -69,10 +69,11 @@ a {
 
 #categories_body {
 	background-color: rgb(200, 218, 218);
+	margin: 10px;
 }
 
 body {
-	background-color: rgb(65, 78, 78)
+	background-color: rgb(65, 78, 78);
 }
 
 button {
