@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Forum</title>
-	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<!-- 	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 	<link rel = "stylesheet" type = "text.css" href = "http://localhost:3000/style.css">
 </head>
@@ -25,16 +25,17 @@
 			</div>			
 		</div></br> -->
 
+		<div id = "categories_body">
+
+
 		<div class = "row">
 			<div class = "six columns">
-				<p class = "topics"> Jakes Favorite Topics: </p>
+				<h5 class = "topics"> Topics: </h5>
 			</div>
 			<div class = "six columns">
-				<p class = "threads"> Most Popular Threads Voted By The User:</p>
+				<h5 class = "threads"> Top Voted Thread:</h5>
 			</div>
 		</div>
-
-
 
 
 		<% categories.forEach(function(category){ %>
@@ -45,16 +46,25 @@
 				<% thread.forEach(function(threads){ %>
 				<% if (threads.cat_id == category.id) { %>	
 				<div class = "six columns">
-					<a href= "http://localhost:3000/forums/threads/<%= threads.id %>"><h6 id = "home_threads"> <%= threads.title %> </h6></a>
+					<a href= "http://localhost:3000/forums/threads/<%= threads.id %>"><h6 id = "home_threads"> <%= threads.title %> (<%= threads.votes %>:Votes)</h6></a>
 				</div>	
 			<% } %>
 			<% }); %>		
 		</div>
 		<%	}) %>
 
+		</div>
+
 
 
 
 	</div>
+
+
+
+
+
+
+
 </body>
 </html>

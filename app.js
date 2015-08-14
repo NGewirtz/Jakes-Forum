@@ -7,6 +7,9 @@ var methodOverride = require('method-override');
 var urlencodedBodyParser = bodyParser.urlencoded({extended: false});
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('forum.db');
+var request = require('request');
+var marked = require('marked');
+var dotenv = require('dotenv').load();
 app.use(urlencodedBodyParser);
 app.use(methodOverride('_method'));
 app.set('view_engine', 'ejs');
@@ -23,7 +26,7 @@ app.get("/forums", function (req, res){
 			throw err;
 		}else {
 			var categories = categories
-			console.log(categories)
+			//console.log(categories)
 			categories.forEach(function(category){
 				db.get("SELECT * FROM threads WHERE cat_id=? ORDER BY threads.votes DESC", category.id, function (err, thread){
 					//console.log(thread)	
@@ -105,12 +108,26 @@ app.get("/forums/threads/:id", function (req, res){
 app.post("/forums/threads/:id", function (req, res){
 	var id = req.params.id;
 	var reply = req.body.reply;
-	console.log(reply)
-	db.run("INSERT INTO replies (thread_id, content) VALUES (?,?)", id, reply, function (err) {
-		if(err){
-			throw err;
+	var location = req.body.location
+	var key = process.env.key
+	console.log(key)
+	request("http://dev.virtualearth.net/REST/v1/Locations/"+location+"?o=&key="+key, function (error, response, body) {
+		console.log(body)
+		body = JSON.parse(body)
+		if (body.resourceSets[0].resources.length > 0) {
+			var locality = body.resourceSets[0].resources[0].address.adminDistrict
+			console.log(locality)
+		}else{ 
+			var locality = "NY";
 		}
-		res.redirect("/forums/threads/"+id);
+
+	//console.log(reply)
+			db.run("INSERT INTO replies (thread_id, content, locality) VALUES (?,?,?)", id, reply, locality, function (err) {
+			if(err){
+				throw err;
+			}
+			res.redirect("/forums/threads/"+id);
+		});
 	});
 });
 

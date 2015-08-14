@@ -8,7 +8,7 @@ db.run("INSERT INTO categories (name, description) VALUES ('Mets', 'All things M
 });
 
 
-db.run("INSERT INTO threads (title, content, cat_id, votes) VALUES ('first thread', 'this is my first thread', '1', '0'), ('second thread', 'this is my second thread', '2', '0'), ('third thread', 'this is my third thread', '3', '0'), ('first thread', 'this is my first thread', '4', '0')", function (err) {
+db.run("INSERT INTO threads (title, content, cat_id, votes) VALUES ('Matt Harvey: Great pitcher or greatest pitcher?', 'My vote is greatest pitcher of all time, what do you guys think?', '1', '0'), ('DEFENSE', 'Am I Rite?', '2', '0'), ('Is Jon Snow dead?', 'No spoilers.. but is Jon Snow dead?', '3', '0'), ('DOG FISH HEAD!!!', 'DOG FISH HEAD!!!!!!!!!!!', '4', '0')", function (err) {
 	if(err){
 		throw err;
 	}

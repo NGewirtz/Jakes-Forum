@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Forum</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 	<link rel = "stylesheet" type = "text.css" href = "http://localhost:3000/style.css">
 </head>
@@ -25,10 +26,11 @@
 		</div>
  -->
 		<div class = "row">
-			<div class = "twelve columns" style = "text-align: center;">
-				<h5> <%= thread.title %> 
-				<form action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
-					<button style = "position: relative; float: right">VOTE!</button> </form></h5>
+			<div class = "twelve columns" >
+				<h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5>
+				<form class = "two columns" action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
+					<button style = "position: relative; float: right; margin-bottom: 0;">VOTE!</button> </form>
+				<h8 style = "position: relative; float: right; margin-right: 10px"> (<%= thread.votes %>:Votes) </h8>
 			</div>			
 		</div>
 
@@ -38,7 +40,7 @@
 				<p class = "cat_thread"> Post </p>
 			</div>
 			<div class = "one columns">
-				<p style = "position: relative; float: right"> Reply#</p>
+				<p style = "position: relative; float: right; margin-right: 10px"> Reply#|State</p>
 			</div>
 		</div>
 		<div id ="categories_body" style = "margin-top: 0px;">
@@ -46,8 +48,8 @@
 
 		<div class = "row" id = "thread_div">
 			<div class = "twelve columns">
-				<p class = "eleven columns" id = "thread_content"> <%= thread.content %> </p>
-				<h5 class = "one columns"> 1 </h5>
+				<p class = "ten columns" id = "thread_content"> <%= thread.content %> </p>
+				<p class = "two columns"> 1 | OP </p>
 			</div>			
 		</div>
 
@@ -55,8 +57,8 @@
 		<% reply.forEach(function(text){ %>
 		<div class = "row" id = "thread_div">
 			<div class = "twelve columns">
-				<p class = "eleven columns" id = "thread_content"> <%= text.content %> </p>
-				<h5 class = "one columns">  <%= counter %> </h5>
+				<p class = "ten columns" id = "thread_content"> <%= text.content %> </p>
+				<p class = "two columns">  <%= counter %> | <%= text.locality %></p>
 				<% counter ++  %>
 			</div>					
 		</div>
@@ -66,6 +68,7 @@
   		<div class="row" style = "padding-left: 30px; padding-right: 30px;">
     		<label for="reply">New Reply</label>
   			<textarea class="u-full-width" placeholder="Type reply here" id="reply" name ="reply"></textarea>
+  			<input type="hidden" name="location" class = "location">
   			<button>Submit</button>
   		</div>
 		</form>
@@ -74,11 +77,23 @@
 
 
 
+<script>
+navigator.geolocation.getCurrentPosition(success, error);
 
+function success(position) {
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+   	var location = (lat + ', ' + lng);
+    $(".location").val(location)
+    console.log(location)
+} 
+function error(error) {
+    alert ('damn error' +error);
+}
 
+$(".thread_content").text(marked(text.content))
 
-
-
+</script>
 
 
 

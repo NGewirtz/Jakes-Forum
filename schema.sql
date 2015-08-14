@@ -29,6 +29,7 @@ CREATE TABLE replies (
 	user_id INTEGER,
 	content TEXT,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	locality TEXT,
 	FOREIGN KEY(thread_id) REFERENCES threads(id),
 	FOREIGN KEY(user_id) REFERENCES users(id)
 );
