@@ -71,10 +71,9 @@ a {
 
 #nested_div {
 	border-style: solid; 
-/*	border-width: 15px;*/
-	border-left-width: 50px;
-	border-right-width: 50px; 
-	border-color: rgb(163, 194, 194)
+	border-left-width: 30px;
+	border-right-width: 30px; 
+	border-color: rgb(163, 194, 194);
 }
 
 #nested_content {
@@ -121,6 +120,19 @@ a {
 
 #new_topic {
 	color: black;
+}
+
+.vote {
+	position: relative;
+	float: right;
+	margin-bottom: 0;
+	margin-right: 10px;
+}
+
+.vote_number {
+	position: relative;
+	float: right;
+	margin-right: 10px;
 }
 
 body {

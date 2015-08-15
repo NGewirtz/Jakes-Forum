@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Forum</title>
+	<title>Jakes Forum</title>
 <!-- 	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
-	<link rel = "stylesheet" type = "text.css" href = "http://localhost:3000/style.css">
+	<link rel = "stylesheet" type = "text/css" href = "http://localhost:3000/style.css">
 </head>
 <body>
 	<div class = "container">
@@ -16,55 +16,37 @@
 			</div>
 		</div></br>
 
-<!-- 		<div class = "row">
-			<div class = "six columns">
-				<button>This is a button</button>
-			</div>
-			<div class = "six columns">
-				<button style = "position: relative; float: right">This is a button</button>
-			</div>			
-		</div></br> -->
-
 		<div id = "categories_body" style= "border-style: solid;">
 
 
-		<div class = "row">
-			<div class = "six columns">
-				<h5 class = "topics"> Topics: </h5>
+			<div class = "row">
+				<div class = "six columns">
+					<h5 class = "topics"> Topics: </h5>
+				</div>
+				<div class = "six columns">
+					<h5 class = "threads"> Top Voted Thread:</h5>
+				</div>
 			</div>
-			<div class = "six columns">
-				<h5 class = "threads"> Top Voted Thread:</h5>
-			</div>
-		</div>
 
 
-		<% categories.forEach(function(category){ %>
-		<div class = "row" id = "home_body" style= "border-style: solid; border-width: 1px;">
-			<div class = "six columns" style="border-style: solid; border-width: 1px">
-				<a href= "http://localhost:3000/forums/<%= category.id %>"> <h5 id = "home_categories"> <%= category.name %> :</h5> </a> <p id ="home_descriptions"> <%= category.description %> </p>
-			</div>
-				<% thread.forEach(function(threads){ %>
-				<% if (threads.cat_id == category.id) { %>	
+			<% categories.forEach(function(category){ %>
+			<div class = "row" id = "home_body" style= "border-style: solid; border-width: 1px;">
+				<div class = "six columns" style="border-style: solid; border-width: 1px">
+					<a href= "http://localhost:3000/forums/<%= category.id %>"> <h5 id = "home_categories"> <%= category.name %> :</h5> </a> <p id ="home_descriptions"> <%= category.description %> </p>
+				</div>
+			<% thread.forEach(function(threads){ %>
+			<% if (threads.cat_id == category.id) { %>	
 				<div class = "six columns">
 					<a href= "http://localhost:3000/forums/threads/<%= threads.id %>"><h6 id = "home_threads"> <%= threads.title %> (<%= threads.votes %>:Votes)</h6></a>
 				</div>	
 			<% } %>
 			<% }); %>		
-		</div>
-		<%	}) %>
+			</div>
+			<%	}) %>
 
 		</div>
-
-
-
 
 	</div>
-
-
-
-
-
-
 
 </body>
 </html>

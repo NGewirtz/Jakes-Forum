@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Forum</title>
+	<title>Jakes Forum</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 	<link rel = "stylesheet" type = "text.css" href = "http://localhost:3000/style.css">
@@ -16,35 +16,24 @@
 			</div>
 		</div></br>
 
-<!-- 		<div class = "row">
-			<div class = "six columns">
-				<button>This is a button</button>
-			</div>
-			<div class = "six columns">
-				<button style = "position: relative; float: right">This is a button</button>
-			</div>			
-		</div>
- -->
 		<div class = "row">
 			<div class = "twelve columns" >
 				<a href="http://localhost:3000/forums/<%= thread.cat_id %>" id = "thread_link"><h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5></a>
 				<form class = "two columns" action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
-					<button style = "position: relative; float: right; margin-bottom: 0; margin-right: 10px">VOTE!</button> </form>
-				<h8 style = "position: relative; float: right; margin-right: 10px"> (<%= thread.votes %>:Votes) </h8>
+					<button class = "vote">VOTE!</button> </form>
+				<h8 class = "vote_number"> (<%= thread.votes %>:Votes) </h8>
 			</div>			
 		</div>
 
 
-		<div class = "row" style = "margin-bottom: 0px;">
-			<div class = "eleven columns">
-				<p class = "cat_thread"> Post </p>
-			</div>
-			<div class = "one columns">
-				<p style = "position: relative; float: right; margin-right: 10px"> Reply#|State</p>
+		<div class = "row" >
+			<div class = "twelve columns">
+				<p class = "ten columns" id = "thread_content"> Reply: </p>
+				<p class = "two columns"> #|State</p>
 			</div>
 		</div>
-		<div id ="categories_body" style = "margin-top: 0px;">
 
+		<div id ="categories_body">
 
 		<div class = "row" id = "thread_div">
 			<div class = "twelve columns">
@@ -62,6 +51,7 @@
 				<% counter ++  %>
 			</div>					
 		</div>
+
 		<% nest.forEach(function(nested){ %>
 		<% if(text.id == nested.replies_id) { %>
 		<div class = "row" id = "nested_div">
@@ -70,7 +60,7 @@
 				<p class = "two columns">^ | ^^</p>
 			</div>
 		</div>
-		<% } %>
+		<%  } %>
 		<%	}) %>
 		<%	}) %>
 
@@ -88,23 +78,22 @@
 		</div>
 
 
-
 <script>
-navigator.geolocation.getCurrentPosition(success, error);
+	navigator.geolocation.getCurrentPosition(success, error);
 
-function success(position) {
+	function success(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
    	var location = (lat + ', ' + lng);
     $(".location").val(location)
     console.log(location)
-} 
-function error(error) {
+	}
+
+	function error(error) {
     alert ('damn error' +error);
-}
-
+	}
+	
 </script>
-
 
 
 	</div>
