@@ -27,9 +27,9 @@
  -->
 		<div class = "row">
 			<div class = "twelve columns" >
-				<h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5>
+				<a href="http://localhost:3000/forums/<%= thread.cat_id %>" id = "thread_link"><h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5></a>
 				<form class = "two columns" action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
-					<button style = "position: relative; float: right; margin-bottom: 0;">VOTE!</button> </form>
+					<button style = "position: relative; float: right; margin-bottom: 0; margin-right: 10px">VOTE!</button> </form>
 				<h8 style = "position: relative; float: right; margin-right: 10px"> (<%= thread.votes %>:Votes) </h8>
 			</div>			
 		</div>
@@ -57,15 +57,27 @@
 		<% reply.forEach(function(text){ %>
 		<div class = "row" id = "thread_div">
 			<div class = "twelve columns">
-				<p class = "ten columns" id = "thread_content"> <%= text.content %> </p>
+				<a href = "http://localhost:3000/forums/threads/nested/<%= text.id %>"><p class = "ten columns" id = "thread_content"> <%= text.content %> </p> </a>
 				<p class = "two columns">  <%= counter %> | <%= text.locality %></p>
 				<% counter ++  %>
 			</div>					
 		</div>
+		<% nest.forEach(function(nested){ %>
+		<% if(text.id == nested.replies_id) { %>
+		<div class = "row" id = "nested_div">
+			<div class = "twelve columns" id = "nested_content">
+				<p class = "ten columns" id = "thread_content"> <%= nested.content %> </p>
+				<p class = "two columns">^ | ^^</p>
+			</div>
+		</div>
+		<% } %>
+		<%	}) %>
 		<%	}) %>
 
-		</br><form action="/forums/threads/<%= thread.id %>" method="POST">
-  		<div class="row" style = "padding-left: 30px; padding-right: 30px;">
+		<div class = "row" id = "break"></div>
+
+		<form action="/forums/threads/<%= thread.id %>" method="POST">
+  		<div class="row" id = "thread_form">
     		<label for="reply">New Reply</label>
   			<textarea class="u-full-width" placeholder="Type reply here" id="reply" name ="reply"></textarea>
   			<input type="hidden" name="location" class = "location">
@@ -90,8 +102,6 @@ function success(position) {
 function error(error) {
     alert ('damn error' +error);
 }
-
-$(".thread_content").text(marked(text.content))
 
 </script>
 

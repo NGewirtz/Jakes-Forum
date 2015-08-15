@@ -94,12 +94,14 @@ app.get("/forums/threads/:id", function (req, res){
 			throw err;
 		}else {
 			db.all("SELECT * FROM replies WHERE thread_id=?", id, function (err, reply){
+			db.all("SELECT * FROM nested", function (err, nest) {
 				if (err){
 					throw err;
 				}else {
 					//console.log(reply)
-					res.render("thread.ejs", {thread: thread, reply: reply});
+					res.render("thread.ejs", {thread: thread, reply: reply, nest: nest});
 				}
+			}); 
 			});
 		}
 	});
@@ -132,7 +134,7 @@ app.post("/forums/threads/:id", function (req, res){
 });
 
 app.put("/forums/threads/:id", function (req, res){
-	var id = req.params.id
+	var id = req.params.id;
 	db.get("SELECT * FROM threads WHERE id=?", id, function (err, thread){
 		if(err){
 			throw err;
@@ -148,6 +150,28 @@ app.put("/forums/threads/:id", function (req, res){
 	});
 });
 
+app.get("/forums/threads/nested/:id", function (req, res) {
+	var id = req.params.id;
+	db.get("SELECT * FROM replies WHERE id=?", id, function (err, nested){
+		if(err){
+			throw err;
+		}else {
+			res.render("nested.ejs", {nested: nested});
+		}
+	});
+});
+
+app.post("/forums/threads/nested/:id", function (req, res) {
+	var id = req.params.id;
+	var threadId = req.body.thread_id;
+	var content = req.body.content;
+	db.run("INSERT INTO nested (replies_id, content) VALUES (?,?)", id, content, function (err) {
+			if(err){
+				throw err;
+			}
+				res.redirect("/forums/threads/"+threadId);
+	});
+});
 
 
 app.listen(3000, function(){

@@ -14,6 +14,7 @@
 				<a href="http://localhost:3000"><h1 id ="header_text"> Welcome To Jakes Forum! </h1></a>
 			</div>
 		</div></br>
+
 <!-- 
 		<div class = "row">
 			<div class = "six columns">
@@ -26,19 +27,19 @@
  -->
 
 		<div class = "row">
-			<div class = "twelve columns" style = "text-align: center;">
-				<a href = "http://localhost:3000/forums/<%= category.id %>" id = "new_topic"><h4>  Topic: <%= category.name %> </h4></a>
+			<div class = "twelve columns">
+				<a href = "http://localhost:3000/forums/threads/<%= nested.thread_id %>"><h5 id = "nested_header">  Reply To: <%= nested.content %> </h5> </a>
 			</div>			
 		</div>
 
 		
 
 		<div id ="categories_body">
-		<div class="row" id = "newthread_form">
+		<div class="row" id ="nested_form">
 			<div class = "eight columns" style = "padding-left: 30px;">
-				<form action = "/forums/threads/new/<%= category.id %>" method = "POST">
-					<input class="u-full-width" type = "text" placeholder="Thread Title" name ="title">
-					<textarea class="u-full-width" placeholder="Thread Content" name ="content"></textarea>
+				<form action = "/forums/threads/nested/<%= nested.id %>" method = "POST">
+					<textarea class="u-full-width" placeholder="Reply" name ="content"></textarea>
+					<input type="hidden" name="thread_id" value = "<%= nested.thread_id %>">
 					<button>Submit</button>
 				</form>
 			</div>

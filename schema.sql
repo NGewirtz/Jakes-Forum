@@ -40,3 +40,13 @@ CREATE TABLE users (
 	password TEXT,
 	img TEXT
 );
+
+CREATE TABLE nested (
+	id INTEGER PRIMARY KEY autoincrement,
+	replies_id INTEGER,
+	user_id INTEGER,
+	content TEXT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(replies_id) REFERENCES replies(id),
+	FOREIGN KEY(user_id) REFERENCES users(id)
+);
