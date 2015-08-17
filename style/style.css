@@ -19,7 +19,6 @@ a {
 	text-decoration: none;
 }
 
-
 #header_text {
 	color:rgb(200, 218, 218);
 	padding-top:10px;
@@ -133,6 +132,14 @@ a {
 	position: relative;
 	float: right;
 	margin-right: 10px;
+}
+
+#home_grid {
+	border-style: solid;
+	border-right-width: 1px;
+	border-left: 0px;
+	border-bottom: 0px;
+	border-top: 0px;
 }
 
 body {

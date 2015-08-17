@@ -46,7 +46,7 @@ app.get("/forums/threads/new/:id", function (req, res){
 		if(err){
 			throw err;
 		}else {
-		res.render("newcategorie.ejs", {category: category});
+			res.render("newcategorie.ejs", {category: category});
 		}
 	});
 });
