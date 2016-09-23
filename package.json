@@ -26,5 +26,6 @@
     "request": "^2.60.0",
     "sqlite3": "^3.0.10"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": []
 }
