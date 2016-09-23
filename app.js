@@ -139,7 +139,7 @@ app.put("/forums/threads/:id", function (req, res){
 		if(err){
 			throw err;
 		}else {
-			console.log(thread.votes)
+			//console.log(thread.votes)
 			var votes = thread.votes+1;
 			//console.log(votes)
 			db.run("UPDATE threads SET votes=? WHERE id=?", votes, id, function (err) {
