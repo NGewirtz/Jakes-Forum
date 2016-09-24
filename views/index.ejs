@@ -5,14 +5,14 @@
 	<title>Jakes Forum</title>
 <!-- 	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
-	<link rel = "stylesheet" type = "text/css" href = "http://localhost:3000/style.css">
+	<link rel = "stylesheet" type = "text/css" href = "http://calm-peak-30186.herokuapp.com//style.css">
 </head>
 <body>
 	<div class = "container">
 
 		<div class = "row" id = "header">
 			<div class = "twelve columns">
-				<a href="http://localhost:3000"><h1 id ="header_text"> Welcome To Jakes Forum! </h1></a>
+				<a href="http://calm-peak-30186.herokuapp.com/"><h1 id ="header_text"> Welcome To Jakes Forum! </h1></a>
 			</div>
 		</div></br>
 
@@ -30,12 +30,12 @@
 			<% categories.forEach(function(category){ %>
 			<div class = "row" id = "home_body" style= "border-style: solid; border-width: 1px;">
 				<div class = "six columns" id = "home_grid">
-					<a href= "http://localhost:3000/forums/<%= category.id %>"> <h5 id = "home_categories"> <%= category.name %> :</h5> </a> <p id ="home_descriptions"> <%= category.description %> </p>
+					<a href= "http://calm-peak-30186.herokuapp.com//forums/<%= category.id %>"> <h5 id = "home_categories"> <%= category.name %> :</h5> </a> <p id ="home_descriptions"> <%= category.description %> </p>
 				</div>
 			<% thread.forEach(function(threads){ %>
 			<% if (threads.cat_id == category.id) { %>	
 				<div class = "six columns">
-					<a href= "http://localhost:3000/forums/threads/<%= threads.id %>"><h6 id = "home_threads"> <%= threads.title %> (<%= threads.votes %>:Votes)</h6></a>
+					<a href= "http://calm-peak-30186.herokuapp.com//forums/threads/<%= threads.id %>"><h6 id = "home_threads"> <%= threads.title %> (<%= threads.votes %>:Votes)</h6></a>
 				</div>	
 			<% } %>
 			<% }); %>		
