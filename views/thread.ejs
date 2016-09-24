@@ -5,7 +5,7 @@
 	<title>Jakes Forum</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
-	<link rel = "stylesheet" type = "text.css" href = "http://calm-peak-30186.herokuapp.com//style.css">
+	<link rel = "stylesheet" type = "text.css" href = "http://calm-peak-30186.herokuapp.com/style.css">
 </head>
 <body>
 	<div class = "container">
@@ -18,7 +18,7 @@
 
 		<div class = "row">
 			<div class = "twelve columns" >
-				<a href="http://calm-peak-30186.herokuapp.com//forums/<%= thread.cat_id %>" id = "thread_link"><h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5></a>
+				<a href="http://calm-peak-30186.herokuapp.com/forums/<%= thread.cat_id %>" id = "thread_link"><h5 class = "ten columns" style = "padding-left: 10px"> <%= thread.title %> </h5></a>
 				<form class = "two columns" action = "/forums/threads/<%= thread.id%>?_method=PUT" method = "POST">
 					<button class = "vote">VOTE!</button> </form>
 				<h8 class = "vote_number"> (<%= thread.votes %>:Votes) </h8>
@@ -45,7 +45,7 @@
 		<% reply.forEach(function(text){ %>
 		<div class = "row" id = "thread_div">
 			<div class = "twelve columns">
-				<a href = "http://calm-peak-30186.herokuapp.com//forums/threads/nested/<%= text.id %>"><p class = "ten columns" id = "thread_content"> <%= text.content %> </p> </a>
+				<a href = "http://calm-peak-30186.herokuapp.com/forums/threads/nested/<%= text.id %>"><p class = "ten columns" id = "thread_content"> <%= text.content %> </p> </a>
 				<p class = "two columns">  <%= counter %> | <%= text.locality %></p>
 				<% counter ++  %>
 			</div>					

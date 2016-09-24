@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Jakes Forum</title>
 	<link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
-	<link rel = "stylesheet" type = "text.css" href = "http://calm-peak-30186.herokuapp.com//style.css">
+	<link rel = "stylesheet" type = "text.css" href = "http://calm-peak-30186.herokuapp.com/style.css">
 </head>
 <body>
 	<div class = "container">
@@ -40,7 +40,7 @@
 		<% if (category.id == thread.cat_id) { %>
 		<div class = "row">
 			<div class = "twelve columns">
-				<a href = "http://calm-peak-30186.herokuapp.com//forums/threads/<%= thread.id %>" class = "eleven columns"><h5 id = "thread_select"> <%= thread.title %> </h5></a>
+				<a href = "http://calm-peak-30186.herokuapp.com/forums/threads/<%= thread.id %>" class = "eleven columns"><h5 id = "thread_select"> <%= thread.title %> </h5></a>
 				
 				<% var counter = 1 %>
 				<% replies.forEach(function(text){ %>
