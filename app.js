@@ -113,16 +113,16 @@ app.post("/forums/threads/:id", function (req, res){
 	var location = req.body.location
 	var key = process.env.key
 	console.log(key)
-	request("http://dev.virtualearth.net/REST/v1/Locations/"+location+"?o=&key="+key, function (error, response, body) {
-		console.log(body)
-		body = JSON.parse(body)
-		if (body.resourceSets[0].resources.length > 0) {
-			var locality = body.resourceSets[0].resources[0].address.adminDistrict
-			console.log(locality)
-		}else{ 
-			var locality = "NY";
-		}
-
+	// request("http://dev.virtualearth.net/REST/v1/Locations/"+location+"?o=&key="+key, function (error, response, body) {
+	// 	console.log(body)
+	// 	body = JSON.parse(body)
+	// 	if (body.resourceSets[0].resources.length > 0) {
+	// 		var locality = body.resourceSets[0].resources[0].address.adminDistrict
+	// 		console.log(locality)
+	// 	}else{ 
+	// 		var locality = "NY";
+	// 	}
+	var locality = "NY"
 	//console.log(reply)
 			db.run("INSERT INTO replies (thread_id, content, locality) VALUES (?,?,?)", id, reply, locality, function (err) {
 			if(err){
