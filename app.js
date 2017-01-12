@@ -130,7 +130,7 @@ app.post("/forums/threads/:id", function (req, res){
 			}
 			res.redirect("/forums/threads/"+id);
 		});
-	});
+	// });
 });
 
 app.put("/forums/threads/:id", function (req, res){
